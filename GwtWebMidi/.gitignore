@@ -1,0 +1,8 @@
+Thumbs.db
+.gwt-log
+
+/war/WEB-INF/classes
+/war/WEB-INF/deploy
+/war/gwtwebmidi
+/war/gwtwebmiditest
+/gwt-unitCache
