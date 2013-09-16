@@ -1,4 +1,4 @@
-The zlib/libpng License
+# The zlib/libpng License
 
 Copyright (c) 2013 Andreas Wenger, Xenoage Software
 
