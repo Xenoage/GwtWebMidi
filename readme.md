@@ -7,4 +7,6 @@ Because support for the Web MIDI API is still missing in the common browsers, th
 [Jazz Plugin](http://jazz-soft.net/doc/Jazz-Plugin/) must be installed in your browser.
 GwtWebMidi uses the [Web MIDI API Polyfill](https://github.com/cwilso/WebMIDIAPIShim) to close the gap.
 
+Tip for testing GwtWebMidi in GWT development mode: Install Firefox 24. See http://stackoverflow.com/questions/1111920/multiple-firefox-versions-on-same-pc how to run multiple installations of Firefox in parallel. In Chrome, currently (2014-09-15) it does not work maybe.
+
 Contact andi@xenoage.com for questions.
