@@ -26,13 +26,13 @@ public final class MidiAccess {
 	 */
 	MidiAccess(JavaScriptObject jso) {
 		//list input ports
-		JavaScriptObject jsInputs = call(jso, "inputs");
+		JavaScriptObject jsInputs = get(jso, "inputs");
 		for (int i = 0; i < length(jsInputs); i++)
-			inputs.add(new MidiInput(get(jsInputs, i)));
+			inputs.add(new MidiInput(call(jsInputs, "get", i))); //TODO: key may be anything, not just 0,1,2...
 		//list output ports
-		JavaScriptObject jsOutputs = call(jso, "outputs");
+		JavaScriptObject jsOutputs = get(jso, "outputs");
 		for (int i = 0; i < length(jsOutputs); i++)
-			outputs.add(new MidiOutput(get(jsOutputs, i)));
+			outputs.add(new MidiOutput(call(jsOutputs, "get", i))); //TODO: key may be anything, not just 0,1,2...
 	}
 	
 	

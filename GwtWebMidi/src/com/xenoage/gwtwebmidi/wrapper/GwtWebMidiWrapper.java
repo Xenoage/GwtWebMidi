@@ -1,7 +1,6 @@
 package com.xenoage.gwtwebmidi.wrapper;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Window;
 import com.xenoage.gwtwebmidi.WebMidiListener;
 
 
@@ -56,24 +55,39 @@ public class GwtWebMidiWrapper {
 			listener.onInitError(error);
 	}
 	
+
+	public static native String attrString(JavaScriptObject jso, String attrName) /*-{
+		return jso[attrName];
+	}-*/;
+	
+	
+	//TODO: MIDIOutputMap class
+	public static native int length(Object sequence) /*-{
+		return sequence.size;
+	}-*/;
+	
 	
 	public static native JavaScriptObject call(JavaScriptObject jso, String methodName) /*-{
 		return jso[methodName]();
 	}-*/;
 	
 	
-	public static native String attrString(JavaScriptObject jso, String attrName) /*-{
-		return jso[attrName];
+	public static native JavaScriptObject call(JavaScriptObject jso, String methodName, Object arg0) /*-{
+		return jso[methodName](arg0);
 	}-*/;
 	
 	
-	public static native int length(JavaScriptObject sequence) /*-{
-		return sequence.length;
+	public static native JavaScriptObject get(JavaScriptObject jso, String propertyName) /*-{
+		return jso[propertyName];
 	}-*/;
 	
 	
 	public static native JavaScriptObject get(JavaScriptObject sequence, int index) /*-{
 		return sequence[index];
+	}-*/;
+	
+	public static native void consoleLog(Object message) /*-{
+    	console.log(message);
 	}-*/;
 
 }
