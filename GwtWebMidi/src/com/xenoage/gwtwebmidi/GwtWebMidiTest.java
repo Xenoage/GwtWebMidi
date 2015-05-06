@@ -48,12 +48,12 @@ public class GwtWebMidiTest
 		for (MidiOutput mo : midiAccess.getOutputs())
 			log("- " + mo.port.name);
 		log("Playing some notes on output port 0.");
-		midiAccess.getOutputs().get(0).send(new int[]{0x90, 0x45, 0x7f}, GwtWebMidi.getPerformanceNow() + 1000);
-		midiAccess.getOutputs().get(0).send(new int[]{0x80, 0x45, 0x7f}, GwtWebMidi.getPerformanceNow() + 2000);
-		midiAccess.getOutputs().get(0).send(new int[]{0x90, 0x49, 0x7f}, GwtWebMidi.getPerformanceNow() + 2000);
-		midiAccess.getOutputs().get(0).send(new int[]{0x80, 0x49, 0x7f}, GwtWebMidi.getPerformanceNow() + 3000);
-		midiAccess.getOutputs().get(0).send(new int[]{0x90, 0x4C, 0x7f}, GwtWebMidi.getPerformanceNow() + 3000);
-		midiAccess.getOutputs().get(0).send(new int[]{0x80, 0x4C, 0x7f}, GwtWebMidi.getPerformanceNow() + 4000);
+		MidiOutput out = midiAccess.getOutputs().get(0);
+		int[] notes = {0x45, 0x49, 0x4C};
+		for (int i = 0; i < notes.length; i++) {
+			out.send(new int[]{0x90, notes[i], 0x7f}, GwtWebMidi.getPerformanceNow() + (i+1) * 1000);
+			out.send(new int[]{0x80, notes[i], 0x7f}, GwtWebMidi.getPerformanceNow() + (notes.length+1) * 1000);
+		}
 	}
 
 
