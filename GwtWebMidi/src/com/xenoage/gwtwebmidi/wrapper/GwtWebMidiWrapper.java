@@ -32,8 +32,14 @@ public class GwtWebMidiWrapper {
 		//navigator.requestMIDIAccess() callbacks
 		$wnd.onRequestMidiSuccess = $entry(@com.xenoage.gwtwebmidi.wrapper.GwtWebMidiWrapper::onRequestMidiSuccess(Lcom/google/gwt/core/client/JavaScriptObject;));
 		$wnd.onRequestMidiError = $entry(@com.xenoage.gwtwebmidi.wrapper.GwtWebMidiWrapper::onRequestMidiError(Lcom/google/gwt/core/client/JavaScriptObject;));
-		//init Web MIDI
-		$wnd.navigator.requestMIDIAccess().then($wnd.onRequestMidiSuccess, $wnd.onRequestMidiError);
+		//test if Web MIDI is available
+		if ($wnd.navigator && 'function' === typeof $wnd.navigator.requestMIDIAccess) {
+			//init Web MIDI
+			$wnd.navigator.requestMIDIAccess().then($wnd.onRequestMidiSuccess, $wnd.onRequestMidiError);
+		}
+		else {
+			$wnd.onRequestMidiError({"name": "NotSupportedError"});
+		}
 	}-*/;
 
 
@@ -52,7 +58,7 @@ public class GwtWebMidiWrapper {
 	 */
 	public static void onRequestMidiError(JavaScriptObject error) {
 		if (listener != null)
-			listener.onInitError(error);
+			listener.onInitError(new Exception(get(error, "name").toString()));
 	}
 	
 

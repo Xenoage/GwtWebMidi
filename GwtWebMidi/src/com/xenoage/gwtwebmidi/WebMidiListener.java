@@ -20,8 +20,8 @@ public interface WebMidiListener
 	
 	/**
 	 * This method is called when access to Web MIDI was not possible.
-	 * @param error  the error object with further details
+	 * @param ex  the error object with further details
 	 */
-	public void onInitError(Object error);
+	public void onInitError(Exception ex);
 
 }

@@ -53,8 +53,8 @@ public class GwtWebMidiTest
 	}
 
 
-	@Override public void onInitError(Object error) {
-		log("Error.");
+	@Override public void onInitError(Exception ex) {
+		log("Error: " + ex.getMessage());
 	}
 
 }
