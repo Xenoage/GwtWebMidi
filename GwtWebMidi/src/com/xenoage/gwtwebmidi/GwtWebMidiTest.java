@@ -5,6 +5,8 @@ import com.google.gwt.dom.client.PreElement;
 import com.google.gwt.user.client.DOM;
 import com.xenoage.gwtwebmidi.wrapper.MidiAccess;
 import com.xenoage.gwtwebmidi.wrapper.MidiInput;
+import com.xenoage.gwtwebmidi.wrapper.MidiInputListener;
+import com.xenoage.gwtwebmidi.wrapper.MidiMessageEvent;
 import com.xenoage.gwtwebmidi.wrapper.MidiOutput;
 import com.xenoage.gwtwebmidi.wrapper.GwtWebMidiWrapper;
 
@@ -47,12 +49,22 @@ public class GwtWebMidiTest
 			log("- (None)");
 		for (MidiOutput mo : midiAccess.getOutputs())
 			log("- " + mo.port.name);
-		log("Playing some notes on output port 0.");
+		log("Playing some notes on the first output port.");
 		MidiOutput out = midiAccess.getOutputs().get(0);
 		int[] notes = {0x45, 0x49, 0x4C};
 		for (int i = 0; i < notes.length; i++) {
 			out.send(new int[]{0x90, notes[i], 0x7f}, GwtWebMidi.getPerformanceNow() + (i+1) * 1000);
 			out.send(new int[]{0x80, notes[i], 0x7f}, GwtWebMidi.getPerformanceNow() + (notes.length+1) * 1000);
+		}
+		//listen for input events
+		if (midiAccess.getInputs().size() > 0) {
+			log("You can play some notes on the first MIDI input port now.");
+			midiAccess.getInputs().get(0).addListener(new MidiInputListener() {
+				
+				@Override public void onMidiMessage(MidiMessageEvent event) {
+					log("* Received event: " + event);
+				}
+			});
 		}
 	}
 

@@ -67,6 +67,16 @@ public class GwtWebMidiWrapper {
 	}-*/;
 	
 	
+	public static native double attrDouble(JavaScriptObject jso, String attrName) /*-{
+		return jso[attrName];
+	}-*/;
+	
+	
+	public static native byte[] attrByteArray(JavaScriptObject jso, String attrName) /*-{
+		return jso[attrName];
+	}-*/;
+	
+	
 	//TODO: MIDIOutputMap class
 	public static native int length(Object sequence) /*-{
 		return sequence.size;

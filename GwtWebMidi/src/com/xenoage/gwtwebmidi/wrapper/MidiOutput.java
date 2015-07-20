@@ -22,11 +22,9 @@ public final class MidiOutput {
 		this.port = new MidiPort(jso);
 	}
 	
-	
 	public void send(int[] data) {
 		send(data, 0);
 	}
-
 
 	public void send(int[] data, double timestamp) {
 		if (data.length == 3) //TODO: at the moment, we support only messages with 3 bytes (problem with GWT types) 
