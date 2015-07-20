@@ -3,6 +3,8 @@ package com.xenoage.gwtwebmidi.wrapper;
 import static com.xenoage.gwtwebmidi.wrapper.GwtWebMidiWrapper.attrByteArray;
 import static com.xenoage.gwtwebmidi.wrapper.GwtWebMidiWrapper.attrDouble;
 
+import java.util.Arrays;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
 
@@ -24,4 +26,9 @@ public final class MidiMessageEvent {
 		this.data = attrByteArray(jso, "data");
 	}
 
+	@Override public String toString() {
+		return "MidiMessageEvent [receivedTime=" + receivedTime + ", data=" + Arrays.toString(data) +
+			"]";
+	}
+	
 }
